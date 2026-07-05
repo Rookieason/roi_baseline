@@ -1,8 +1,11 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-DATASET_ROOT="${1:-.}"
-shift || true
+DATASET_ROOT="${DATASET_ROOT:-}"
+if [[ $# -gt 0 && "$1" != -* ]]; then
+  DATASET_ROOT="$1"
+  shift
+fi
 
 ENV_NAME="${ENV_NAME:-ROI_baseline}"
 CONFIG="${CONFIG:-experiments/roi_heatmap_ablation/configs/default.json}"
@@ -30,11 +33,13 @@ TS="$(date +%Y%m%d_%H%M%S)"
 LOG_FILE="$LOG_DIR/run_${TS}.log"
 PID_FILE="$LOG_DIR/run_${TS}.pid"
 
-nohup python -m experiments.roi_heatmap_ablation.run_experiment \
-  --dataset-root "$DATASET_ROOT" \
-  --config "$CONFIG" \
-  "$@" \
-  > "$LOG_FILE" 2>&1 &
+CMD=(python -m experiments.roi_heatmap_ablation.run_experiment --config "$CONFIG")
+if [[ -n "$DATASET_ROOT" ]]; then
+  CMD+=(--dataset-root "$DATASET_ROOT")
+fi
+CMD+=("$@")
+
+nohup "${CMD[@]}" > "$LOG_FILE" 2>&1 &
 
 PID="$!"
 echo "$PID" > "$PID_FILE"
