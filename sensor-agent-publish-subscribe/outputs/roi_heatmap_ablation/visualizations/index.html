@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ROI Heatmap Ablation Results</title>
+  <style>
+    body { margin: 0; font-family: Arial, Helvetica, sans-serif; color: #0f172a; background: #f8fafc; }
+    main { max-width: 1120px; margin: 0 auto; padding: 32px 20px 56px; }
+    h1 { margin: 0 0 10px; font-size: 32px; }
+    p { line-height: 1.55; color: #334155; }
+    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin: 24px 0; }
+    .card { background: white; border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px; }
+    .k { color: #64748b; font-size: 13px; margin-bottom: 8px; }
+    .v { font-size: 22px; font-weight: 700; }
+    section { background: white; border: 1px solid #e2e8f0; border-radius: 8px; padding: 18px; margin: 18px 0; }
+    h2 { margin: 0 0 12px; font-size: 20px; }
+    img { width: 100%; height: auto; display: block; }
+    a { color: #2563eb; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>ROI Heatmap Ablation Results</h1>
+    <p>
+      This dashboard summarizes the comparison between a pose-only 6DoF predictor and a predictor
+      that adds compact RF heatmap features.
+    </p>
+    <div class="cards"><div class="card"><div class="k">ROI cells</div><div class="v">8 x 8 x 8 = 512</div></div>
+<div class="card"><div class="k">Horizons</div><div class="v">50 ms, 100 ms, 150 ms, 200 ms</div></div>
+<div class="card"><div class="k">Sessions</div><div class="v">825</div></div>
+<div class="card"><div class="k">Best Top-10</div><div class="v">72.96% at 200 ms</div></div></div>
+    <p>
+      Chinese report explanation: <a href="REPORT_OVERVIEW_ZH.md">REPORT_OVERVIEW_ZH.md</a>.
+      English report explanation: <a href="REPORT_OVERVIEW.md">REPORT_OVERVIEW.md</a>.
+      Raw table: <a href="summary_table.csv">summary_table.csv</a>.
+    </p>
+    <section><h2>ROI grid</h2><img src="figures/roi_grid.png" alt="ROI grid"></section>
+<section><h2>Dataset split</h2><img src="figures/dataset_split.png" alt="Dataset split"></section>
+<section><h2>Top-1 accuracy</h2><img src="figures/top1_accuracy.png" alt="Top-1 accuracy"></section>
+<section><h2>Top-3 accuracy</h2><img src="figures/top3_accuracy.png" alt="Top-3 accuracy"></section>
+<section><h2>Top-5 accuracy</h2><img src="figures/top5_accuracy.png" alt="Top-5 accuracy"></section>
+<section><h2>Top-10 accuracy</h2><img src="figures/top10_accuracy.png" alt="Top-10 accuracy"></section>
+<section><h2>Accuracy improvement</h2><img src="figures/accuracy_delta.png" alt="Accuracy improvement"></section>
+<section><h2>ROI distance error</h2><img src="figures/roi_error.png" alt="ROI distance error"></section>
+<section><h2>Latency</h2><img src="figures/latency.png" alt="Latency"></section>
+<section><h2>Memory</h2><img src="figures/memory.png" alt="Memory"></section>
+<section><h2>Training loss</h2><img src="figures/training_loss.png" alt="Training loss"></section>
+  </main>
+</body>
+</html>

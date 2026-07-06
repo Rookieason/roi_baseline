@@ -1,0 +1,21 @@
+{
+  "bounds_max": [
+    91.28755,
+    182.80814999999998,
+    186.2194
+  ],
+  "bounds_min": [
+    -80.5013,
+    -115.05964999999999,
+    71.8684
+  ],
+  "dataset_root": "/home/tonic/Projects/NSTC/sensor-agent-publish-subscribe",
+  "grid_size": 8,
+  "horizons_ms": [
+    50,
+    100,
+    150,
+    200
+  ],
+  "split_path": "/home/tonic/Projects/NSTC/sensor-agent-publish-subscribe/outputs/splits/dataset_split.json"
+}
