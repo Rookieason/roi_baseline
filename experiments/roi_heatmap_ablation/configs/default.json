@@ -13,10 +13,12 @@
   "pose_history_ms": 250,
   "pose_history_size": 8,
   "sample_stride": 1,
-  "roi": {
-    "grid_size": 8,
-    "bounds": null,
-    "padding_ratio": 0.05
+  "scene": {
+    "adaptive_config_path": "../../../../adaptive-volumetric-stream-server-main/config/config_example_front_cache_transform_lod.json",
+    "grid_dim": 8,
+    "object_size_cm": 100.0,
+    "fov_deg": 110,
+    "max_distance_cm": null
   },
   "heatmap": {
     "shape": null,
@@ -30,7 +32,7 @@
     "l2": 0.0001
   },
   "evaluation": {
-    "top_k": [1, 3, 5, 10]
+    "threshold": 0.5
   }
 }
 

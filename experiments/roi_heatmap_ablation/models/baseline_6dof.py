@@ -36,35 +36,34 @@ class StreamingStandardizer:
         return ((x - self.mean) / self.scale).astype(np.float32)
 
 
-class SoftmaxClassifier:
-    def __init__(self, input_dim: int, num_classes: int, seed: int = 7) -> None:
+class BinarySigmoidClassifier:
+    def __init__(self, input_dim: int, output_dim: int, seed: int = 7) -> None:
         rng = np.random.default_rng(seed)
-        self.weights = rng.normal(0.0, 0.01, size=(input_dim, num_classes)).astype(np.float32)
-        self.bias = np.zeros(num_classes, dtype=np.float32)
+        self.weights = rng.normal(0.0, 0.01, size=(input_dim, output_dim)).astype(np.float32)
+        self.bias = np.zeros(output_dim, dtype=np.float32)
 
     def predict_logits(self, x: np.ndarray) -> np.ndarray:
         return x @ self.weights + self.bias
 
-    def predict_topk(self, x: np.ndarray, k: int) -> np.ndarray:
+    def predict_proba(self, x: np.ndarray) -> np.ndarray:
         logits = self.predict_logits(x)
-        k = min(k, logits.shape[1])
-        idx = np.argpartition(logits, -k, axis=1)[:, -k:]
-        order = np.argsort(np.take_along_axis(logits, idx, axis=1), axis=1)[:, ::-1]
-        return np.take_along_axis(idx, order, axis=1)
+        return (1.0 / (1.0 + np.exp(-np.clip(logits, -40.0, 40.0)))).astype(np.float32)
+
+    def predict_mask(self, x: np.ndarray, threshold: float = 0.5) -> np.ndarray:
+        return (self.predict_proba(x) >= float(threshold)).astype(np.float32)
 
     def train_batch(self, x: np.ndarray, y: np.ndarray, lr: float, l2: float) -> float:
         logits = self.predict_logits(x)
-        logits -= logits.max(axis=1, keepdims=True)
-        exp = np.exp(logits)
-        probs = exp / np.maximum(exp.sum(axis=1, keepdims=True), 1e-12)
+        y = np.asarray(y, dtype=np.float32)
+        probs = 1.0 / (1.0 + np.exp(-np.clip(logits, -40.0, 40.0)))
         n = x.shape[0]
-        loss = -np.log(np.maximum(probs[np.arange(n), y], 1e-12)).mean()
-        probs[np.arange(n), y] -= 1.0
-        grad_w = x.T @ probs / n + l2 * self.weights
-        grad_b = probs.mean(axis=0)
+        loss = np.maximum(logits, 0.0) - logits * y + np.log1p(np.exp(-np.abs(logits)))
+        error = probs - y
+        grad_w = x.T @ error / n + l2 * self.weights
+        grad_b = error.mean(axis=0)
         self.weights -= lr * grad_w.astype(np.float32)
         self.bias -= lr * grad_b.astype(np.float32)
-        return float(loss)
+        return float(loss.mean())
 
     def save(self, path: str | Path, standardizer: StreamingStandardizer) -> None:
         Path(path).parent.mkdir(parents=True, exist_ok=True)
@@ -77,7 +76,7 @@ class SoftmaxClassifier:
         )
 
     @classmethod
-    def load(cls, path: str | Path) -> tuple["SoftmaxClassifier", StreamingStandardizer]:
+    def load(cls, path: str | Path) -> tuple["BinarySigmoidClassifier", StreamingStandardizer]:
         data = np.load(path)
         model = cls(int(data["weights"].shape[0]), int(data["weights"].shape[1]))
         model.weights = data["weights"].astype(np.float32)
@@ -87,4 +86,3 @@ class SoftmaxClassifier:
         standardizer.m2 = (data["scale"].astype(np.float64) ** 2)
         standardizer.n = 2
         return model, standardizer
-

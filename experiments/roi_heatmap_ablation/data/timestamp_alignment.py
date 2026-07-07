@@ -43,6 +43,7 @@ class AlignedSample:
     pose_history_rotations_deg: np.ndarray
     heatmap: Optional[np.ndarray]
     target_position: np.ndarray
+    target_rotation_deg: np.ndarray
 
 
 _FIGURE_TS_RE = re.compile(r"^(\d{4}-\d{2}-\d{2}T\d{2}-\d{2}-\d{2}\.\d+Z)__")
@@ -178,6 +179,7 @@ def iter_aligned_samples(
             pose_history_rotations_deg=poses.rotations_deg[idxs],
             heatmap=heatmap,
             target_position=poses.positions[future_idx],
+            target_rotation_deg=poses.rotations_deg[future_idx],
         )
 
 
