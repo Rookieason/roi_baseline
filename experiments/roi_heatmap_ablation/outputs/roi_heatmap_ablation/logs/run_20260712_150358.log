@@ -1,0 +1,252 @@
+{
+  "metadata": {
+    "adaptive_config_path": "/home/tonic/Projects/NSTC/adaptive-volumetric-stream-server/config/config_example_front_cache_transform_lod.json",
+    "dataset_root": "/home/tonic/Projects/NSTC/sensor-agent-publish-subscribe",
+    "fov_deg": 110.0,
+    "grid_dim": 8,
+    "horizons_ms": [
+      50,
+      100,
+      150,
+      200
+    ],
+    "max_distance_cm": null,
+    "object_size_cm": 100.0,
+    "roi_output_dim": 3072,
+    "split_path": "/home/tonic/Projects/NSTC/sensor-agent-publish-subscribe/outputs/splits/dataset_split.json"
+  },
+  "results": {
+    "100": {
+      "6dof": {
+        "test": {
+          "exact_match_accuracy": 0.14393724063441532,
+          "f1": 0.3275346795221923,
+          "iou": 0.19583944462813654,
+          "latency_ms_mean": 0.09396045913099293,
+          "latency_ms_p95": 0.08078711107373238,
+          "peak_memory_mb": 1.0048656463623047,
+          "per_cell_accuracy": 0.7472476825862657,
+          "precision": 0.583514180074411,
+          "recall": 0.22766238076344658,
+          "samples": 17591
+        },
+        "train": {
+          "losses": [
+            0.5520405738284595,
+            0.5453274731048409,
+            0.5452808439614818,
+            0.5452630363498175,
+            0.5452547351359667,
+            0.5452502710995816,
+            0.5452475532375533,
+            0.5452457084773009
+          ],
+          "model_path": "/home/tonic/Projects/NSTC/sensor-agent-publish-subscribe/outputs/roi_heatmap_ablation/models/6dof_h100.npz",
+          "samples": 81638
+        }
+      },
+      "heatmap_6dof": {
+        "test": {
+          "exact_match_accuracy": 0.11295363224695452,
+          "f1": 0.5133694003251611,
+          "iou": 0.34532411779862937,
+          "latency_ms_mean": 0.11139007919503685,
+          "latency_ms_p95": 0.11136005632579311,
+          "peak_memory_mb": 42.35615253448486,
+          "per_cell_accuracy": 0.7864149831515616,
+          "precision": 0.6905304219454331,
+          "recall": 0.40855213134709617,
+          "samples": 15679
+        },
+        "train": {
+          "losses": [
+            0.5512488598853929,
+            0.5343415569793515,
+            0.5319469375083747,
+            0.5303143560146586,
+            0.5291537497001918,
+            0.5282962624088837,
+            0.527639436585679,
+            0.5271196037544051
+          ],
+          "model_path": "/home/tonic/Projects/NSTC/sensor-agent-publish-subscribe/outputs/roi_heatmap_ablation/models/heatmap_6dof_h100.npz",
+          "samples": 72497
+        }
+      }
+    },
+    "150": {
+      "6dof": {
+        "test": {
+          "exact_match_accuracy": 0.1495704318745315,
+          "f1": 0.3167336934741983,
+          "iou": 0.1881661221675165,
+          "latency_ms_mean": 0.09222271904445557,
+          "latency_ms_p95": 0.0784862320870161,
+          "peak_memory_mb": 1.0034523010253906,
+          "per_cell_accuracy": 0.7468341536390762,
+          "precision": 0.5832555661235214,
+          "recall": 0.2173942037864219,
+          "samples": 17343
+        },
+        "train": {
+          "losses": [
+            0.5499083047143416,
+            0.5430148186396055,
+            0.542968450430988,
+            0.5429496254079008,
+            0.5429405977028542,
+            0.5429355873354668,
+            0.5429324330806448,
+            0.5429302214308744
+          ],
+          "model_path": "/home/tonic/Projects/NSTC/sensor-agent-publish-subscribe/outputs/roi_heatmap_ablation/models/6dof_h150.npz",
+          "samples": 80489
+        }
+      },
+      "heatmap_6dof": {
+        "test": {
+          "exact_match_accuracy": 0.12050577942397343,
+          "f1": 0.5182193204075124,
+          "iou": 0.3497274107731183,
+          "latency_ms_mean": 0.1145893190972242,
+          "latency_ms_p95": 0.09877751581370718,
+          "peak_memory_mb": 42.35740661621094,
+          "per_cell_accuracy": 0.7892686555721417,
+          "precision": 0.6967489066469958,
+          "recall": 0.41251869871331664,
+          "samples": 15659
+        },
+        "train": {
+          "losses": [
+            0.5506756596527204,
+            0.5344552950910539,
+            0.5320857214204994,
+            0.5304237440896513,
+            0.5292250118382907,
+            0.5283299568964847,
+            0.5276393391942283,
+            0.5270899360285342
+          ],
+          "model_path": "/home/tonic/Projects/NSTC/sensor-agent-publish-subscribe/outputs/roi_heatmap_ablation/models/heatmap_6dof_h150.npz",
+          "samples": 72423
+        }
+      }
+    },
+    "200": {
+      "6dof": {
+        "test": {
+          "exact_match_accuracy": 0.15157674661710901,
+          "f1": 0.31238469863178797,
+          "iou": 0.18510421088178458,
+          "latency_ms_mean": 0.08909528334252136,
+          "latency_ms_p95": 0.07902979850769043,
+          "peak_memory_mb": 0.9969978332519531,
+          "per_cell_accuracy": 0.7471782775083725,
+          "precision": 0.5819249061921243,
+          "recall": 0.21349604759027965,
+          "samples": 17219
+        },
+        "train": {
+          "losses": [
+            0.5488286098902277,
+            0.5420296123747925,
+            0.5419725017656414,
+            0.5419480891479217,
+            0.5419363172544395,
+            0.5419298445610545,
+            0.5419258460509863,
+            0.5419231028295308
+          ],
+          "model_path": "/home/tonic/Projects/NSTC/sensor-agent-publish-subscribe/outputs/roi_heatmap_ablation/models/6dof_h200.npz",
+          "samples": 79913
+        }
+      },
+      "heatmap_6dof": {
+        "test": {
+          "exact_match_accuracy": 0.10722729886893731,
+          "f1": 0.5199438113455421,
+          "iou": 0.35130004883005905,
+          "latency_ms_mean": 0.11385787019293159,
+          "latency_ms_p95": 0.0924640335142608,
+          "peak_memory_mb": 42.379560470581055,
+          "per_cell_accuracy": 0.7870775488849128,
+          "precision": 0.6781586541449452,
+          "recall": 0.42158724137160003,
+          "samples": 15649
+        },
+        "train": {
+          "losses": [
+            0.547322930527897,
+            0.5310406460963163,
+            0.5286075977457181,
+            0.5269691400713692,
+            0.5258171956495846,
+            0.5249719467596562,
+            0.5243279979064034,
+            0.5238206152830523
+          ],
+          "model_path": "/home/tonic/Projects/NSTC/sensor-agent-publish-subscribe/outputs/roi_heatmap_ablation/models/heatmap_6dof_h200.npz",
+          "samples": 72386
+        }
+      }
+    },
+    "50": {
+      "6dof": {
+        "test": {
+          "exact_match_accuracy": 0.14055884843353092,
+          "f1": 0.32766877857079346,
+          "iou": 0.19593533528050824,
+          "latency_ms_mean": 0.09074654619937861,
+          "latency_ms_p95": 0.08039912208914757,
+          "peak_memory_mb": 1.0020265579223633,
+          "per_cell_accuracy": 0.7454601649967071,
+          "precision": 0.5781356858531101,
+          "recall": 0.2286222799700012,
+          "samples": 17715
+        },
+        "train": {
+          "losses": [
+            0.5532220401884517,
+            0.5463125943760696,
+            0.5462639237163364,
+            0.5462464742478461,
+            0.5462384028396485,
+            0.546234026965812,
+            0.5462313096491975,
+            0.5462294165291443
+          ],
+          "model_path": "/home/tonic/Projects/NSTC/sensor-agent-publish-subscribe/outputs/roi_heatmap_ablation/models/6dof_h50.npz",
+          "samples": 82213
+        }
+      },
+      "heatmap_6dof": {
+        "test": {
+          "exact_match_accuracy": 0.12997195308516063,
+          "f1": 0.5277884086610175,
+          "iou": 0.35850037573810417,
+          "latency_ms_mean": 0.12063511407685745,
+          "latency_ms_p95": 0.12458385899662971,
+          "peak_memory_mb": 42.37607955932617,
+          "per_cell_accuracy": 0.7883472381026368,
+          "precision": 0.6912481993970079,
+          "recall": 0.42685079742002885,
+          "samples": 15688
+        },
+        "train": {
+          "losses": [
+            0.5517556361239765,
+            0.5353054771071704,
+            0.5331216155907806,
+            0.5316211457891518,
+            0.5305443144907659,
+            0.5297400521121038,
+            0.5291178730255686,
+            0.528621371886389
+          ],
+          "model_path": "/home/tonic/Projects/NSTC/sensor-agent-publish-subscribe/outputs/roi_heatmap_ablation/models/heatmap_6dof_h50.npz",
+          "samples": 72534
+        }
+      }
+    }
+  }
+}
